@@ -4,7 +4,8 @@ Run: python seed_data.py
 """
 
 import os
-from app import app, db
+from app import app
+from database import db
 from models import Business
 from dotenv import load_dotenv
 

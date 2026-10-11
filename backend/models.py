@@ -2,7 +2,7 @@
 Database models for Aurum Ventura Lead Finder
 """
 
-from app import db
+from database import db
 from datetime import datetime
 
 

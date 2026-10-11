@@ -6,9 +6,9 @@ Business discovery and lead generation service
 import os
 from flask import Flask, jsonify
 from flask_cors import CORS
-from flask_sqlalchemy import SQLAlchemy
 from dotenv import load_dotenv
 import logging
+from database import db
 
 # Load environment variables
 load_dotenv()
@@ -20,7 +20,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['JSON_SORT_KEYS'] = False
 
 # Initialize extensions
-db = SQLAlchemy(app)
+db.init_app(app)
 CORS(app, origins=os.getenv('CORS_ORIGINS', '*').split(','))
 
 # Configure logging

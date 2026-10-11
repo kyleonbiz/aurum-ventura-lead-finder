@@ -4,7 +4,7 @@ Search routes for finding businesses by industry and location
 
 from flask import Blueprint, request, jsonify
 import logging
-from app import db
+from database import db
 from models import Business, SearchHistory
 
 logger = logging.getLogger(__name__)

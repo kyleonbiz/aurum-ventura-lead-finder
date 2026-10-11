@@ -10,7 +10,7 @@ import json
 from io import StringIO, BytesIO
 from openpyxl import Workbook
 from openpyxl.styles import Font, PatternFill, Alignment
-from app import db
+from database import db
 from models import Business, Export
 
 logger = logging.getLogger(__name__)
@@ -107,8 +107,10 @@ def export_csv():
         log_export(filename, 'csv', len(businesses))
 
         # Return file
+        output_bytes = BytesIO(output.getvalue().encode('utf-8'))
+        output_bytes.seek(0)
         return send_file(
-            StringIO(output.getvalue()),
+            output_bytes,
             mimetype='text/csv',
             as_attachment=True,
             download_name=filename
@@ -261,8 +263,7 @@ def export_json():
         log_export(filename, 'json', len(businesses))
 
         # Return file
-        output = StringIO()
-        output.write(json.dumps(json_data, indent=2))
+        output = BytesIO(json.dumps(json_data, indent=2).encode('utf-8'))
         output.seek(0)
 
         return send_file(
