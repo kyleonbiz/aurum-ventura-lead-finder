@@ -5,6 +5,7 @@
   "main": "main.js",
   "homepage": "./",
   "dependencies": {
+    "electron-is-dev": "^2.0.0",
     "electron-squirrel-startup": "^1.1.1"
   },
   "devDependencies": {
