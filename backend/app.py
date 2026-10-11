@@ -55,17 +55,20 @@ def health_check():
     }), 200
 
 
-# Blueprint imports (to be created)
-# from routes.search import search_bp
-# from routes.export import export_bp
+# Blueprint imports
+from routes.search import search_bp
+from routes.export import export_bp
 
 # Register blueprints
-# app.register_blueprint(search_bp, url_prefix='/api/search')
-# app.register_blueprint(export_bp, url_prefix='/api/export')
+app.register_blueprint(search_bp, url_prefix='/api/search')
+app.register_blueprint(export_bp, url_prefix='/api/export')
 
 
 if __name__ == '__main__':
     with app.app_context():
+        # Create tables if they don't exist
+        db.create_all()
+        logger.info('Database initialized')
         logger.info('Starting Aurum Ventura Lead Finder')
 
     app.run(
