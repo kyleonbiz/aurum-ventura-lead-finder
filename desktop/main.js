@@ -15,7 +15,7 @@ function createWindow() {
       nodeIntegration: false,
       contextIsolation: true,
       enableRemoteModule: false,
-      sandbox: true
+      sandbox: process.env.NODE_ENV !== 'test'
     },
     icon: path.join(__dirname, 'assets/icon.png')
   });
