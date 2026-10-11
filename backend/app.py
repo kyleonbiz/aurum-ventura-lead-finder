@@ -4,7 +4,7 @@ Business discovery and lead generation service
 """
 
 import os
-from flask import Flask, jsonify
+from flask import Flask, jsonify, send_from_directory
 from flask_cors import CORS
 from dotenv import load_dotenv
 import logging
@@ -53,6 +53,25 @@ def health_check():
         'status': 'healthy',
         'service': 'aurum-ventura-lead-finder'
     }), 200
+
+
+# Serve the web interface
+WEB_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'web', 'public'))
+
+
+@app.route('/', methods=['GET'])
+def index():
+    return send_from_directory(WEB_DIR, 'index.html')
+
+
+@app.route('/app.js', methods=['GET'])
+def web_app_js():
+    return send_from_directory(WEB_DIR, 'app.js')
+
+
+@app.route('/vendor/<path:filename>', methods=['GET'])
+def web_vendor(filename):
+    return send_from_directory(os.path.join(WEB_DIR, 'vendor'), filename)
 
 
 # Blueprint imports
