@@ -1,0 +1,51 @@
+{
+  "name": "aurum-ventura-desktop",
+  "version": "1.0.0",
+  "description": "Aurum Ventura Lead Finder - Desktop Application",
+  "main": "main.js",
+  "homepage": "./",
+  "dependencies": {
+    "electron-squirrel-startup": "^1.1.1"
+  },
+  "devDependencies": {
+    "electron": "^27.0.0",
+    "electron-builder": "^24.6.4"
+  },
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.aurumventura.leadfinder",
+    "productName": "Aurum Ventura Lead Finder",
+    "files": [
+      "main.js",
+      "preload.js",
+      "src/**/*",
+      "public/**/*"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ]
+    },
+    "mac": {
+      "target": [
+        "dmg",
+        "zip"
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ]
+    }
+  }
+}
